@@ -1,0 +1,96 @@
+$firstColor: #f77f00;
+$secondColor: #003049;
+$thirdColor: #fcbf49;
+$fourthColor: #d62828;
+$fifthColor: #eae2b7;
+
+div.header {
+  background-color: $secondColor;
+  padding: 5px 8px;
+  button {
+    margin: 3px 6px;
+    background-color: $firstColor;
+    border: 2px solid $fifthColor;
+    border-radius: 8px;
+  }
+}
+div.form,
+div.profile {
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+  margin: 110px 0;
+  width: 100%;
+  form {
+    border: 2px solid $secondColor;
+    button.close {
+      width: 70px;
+      background-color: $fourthColor;
+    }
+    button.submit {
+      width: 80%;
+      background-color: #f77f00;
+    }
+    button.submit:disabled {
+      opacity: 0.8;
+    }
+    padding: 6px;
+    width: 25%;
+    display: flex;
+    flex-flow: column wrap;
+    mat-form-field {
+      width: 100%;
+    }
+  }
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
+}
+div.profile {
+  width: 25%;
+  border: 2px solid $secondColor;
+  margin: 0 auto;
+}
+div.increaseAccountBalance {
+  mat-form-field {
+    width: 100%;
+    input {
+      width: 60%;
+    }
+  }
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  width: 30%;
+  margin: 20px auto;
+}
+div.products {
+  width: 100%;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+}
+div.product {
+  border: 2px solid $fourthColor;
+  border-radius: 8px;
+  margin: 6px 8px;
+  width: 18%;
+}
+button.msg {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+div.message {
+  height: 50%;
+  z-index: 3;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+textarea{
+  resize: vertical;
+}

@@ -1,0 +1,71 @@
+<div class="header">
+  <button type="button" mat-flat-button>داشبورد</button>
+  <button type="button" mat-flat-button (click)="showProfile = true">
+    پروفایل
+  </button>
+  <button mat-flat-button routerLink="/log-in">خروج</button>
+</div>
+@if (showProfile) {
+<div class="profile">
+  <button class="close" mat-raised-button (click)="showProfile = false">
+    بستن
+  </button>
+  <h2>
+    {{ mainService.allOperators[mainService.indexOfLoggedInOperator].userName }}
+  </h2>
+  <h3>
+    موجودی:
+    {{
+      mainService.allOperators[mainService.indexOfLoggedInOperator]
+        .accountBalance
+    }}
+    تومان
+  </h3>
+  <button
+    type="button"
+    mat-flat-button
+    (click)="showIncreaseAccountBalancePage = true"
+  >
+    افزایش موجودی
+  </button>
+  <h3>
+    شهر فعلی:
+    {{ mainService.allOperators[mainService.indexOfLoggedInOperator].city }}
+  </h3>
+  <h3>
+    شماره تماس:
+    {{
+      mainService.allOperators[mainService.indexOfLoggedInOperator].phoneNumber
+    }}
+  </h3>
+  <button (click)="deleteAccount()" mat-raised-button>حذف حساب</button>
+</div>
+@if (showIncreaseAccountBalancePage) {
+<div class="increaseAccountBalance">
+  <button mat-button (click)="showIncreaseAccountBalancePage = false">
+    بستن
+  </button>
+  <mat-form-field>
+    <mat-label>مبلغ</mat-label>
+    <input type="number" matInput #input />
+    <button mat-raised-button (click)="increaseAccountBalance(+input.value)">
+      افزایش
+    </button>
+  </mat-form-field>
+</div>
+} } @else { @for (p of mainService.allProducts; track $index) {
+<div class="product">
+  <h3>شناسه سفارش: {{ p.ID }}</h3>
+  <h3>عنوان سفارش: {{ p.description }}</h3>
+  <h3>قیمت: {{ p.price }}</h3>
+  <h3>تاریخ شروع: {{ p.startedDate }}</h3>
+  <h3>تاریخ اتمام: {{ p.finishedDate }}</h3>
+  <button
+    (click)="getProduct(p.description)"
+    mat-raised-button
+    [disabled]="!p.canCanceled"
+  >
+    گرفتن سفارش
+  </button>
+</div>
+} }

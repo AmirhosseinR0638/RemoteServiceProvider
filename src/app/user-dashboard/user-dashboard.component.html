@@ -1,0 +1,141 @@
+<div class="header">
+  <button type="button" mat-flat-button>داشبورد</button>
+  <button type="button" mat-flat-button (click)="showForm = true">
+    ثبت سفارش
+  </button>
+  <button type="button" mat-flat-button (click)="showProfile = true">
+    پروفایل
+  </button>
+  <button mat-flat-button routerLink="/log-in">خروج</button>
+</div>
+@if (showForm) {
+<div class="form">
+  <form [formGroup]="productForm" (ngSubmit)="insertProduct()">
+    <button class="close" (click)="showForm = false" mat-flat-button>
+      بستن
+    </button>
+    <mat-form-field hideRequiredMarker>
+      <mat-label>عنوان سفارش</mat-label>
+      <input type="text" matInput formControlName="description" />
+    </mat-form-field>
+    <mat-form-field hideRequiredMarker>
+      <mat-label>میزان حقوق دریافتی</mat-label>
+      <input type="text" matInput formControlName="price" />
+    </mat-form-field>
+    <mat-form-field hideRequiredMarker>
+      <mat-label>تاریخ شروع</mat-label>
+      <input type="date" matInput formControlName="startedDate" />
+    </mat-form-field>
+    <mat-form-field hideRequiredMarker>
+      <mat-label>تاریخ پایان</mat-label>
+      <input type="date" matInput formControlName="finishedDate" />
+    </mat-form-field>
+    <button type="submit" class="submit" mat-raised-button>ثبت سفارش</button>
+  </form>
+</div>
+} @else {
+<div class="container">
+  <div class="dashboard">
+    <div class="products">
+      @for (p of userProducts ; track $index) {
+      <div class="product">
+        <h3>{{ $index + 1 }}</h3>
+        <div>شناسه محصول: {{ p.ID }}</div>
+        <div>
+          عنوان:
+          {{ p.description }}
+        </div>
+        <div>
+          قیمت:
+          {{ p.price }}
+          تومان
+        </div>
+        <div>
+          تاریخ شروع:
+          {{ p.startedDate }}
+        </div>
+        <div>
+          تاریخ اتمام:
+          {{ p.finishedDate }}
+        </div>
+        <div>
+          امکان حذف محصول:
+          {{ p.canCanceled ? "بله" : "خیر" }}
+        </div>
+        @if (p.operatorName != '') {
+        <div>اپراتور دریافت کننده: {{ p.operatorName }}</div>
+        }
+        <button
+          (click)="deleteProduct($index)"
+          mat-raised-button
+          [disabled]="!p.canCanceled"
+        >
+          حذف سفارش
+        </button>
+      </div>
+      }@empty {
+      <h3>هنوز سفارشی ثبت نشده است!</h3>
+      }
+    </div>
+  </div>
+  @if (showProfile) {
+  <div class="profile">
+    <button class="close" mat-raised-button (click)="showProfile = false">
+      بستن
+    </button>
+    <h2>
+      {{ mainService.allUsers[mainService.indexOfLoggedInUser].userName }}
+    </h2>
+    <h3>
+      موجودی:
+      {{ mainService.allUsers[mainService.indexOfLoggedInUser].accountBalance }}
+      تومان
+    </h3>
+    <button
+      type="button"
+      mat-flat-button
+      (click)="showIncreaseAccountBalancePage = true"
+    >
+      افزایش موجودی
+    </button>
+    <h3>
+      شهر فعلی:
+      {{ mainService.allUsers[mainService.indexOfLoggedInUser].currentCity }}
+    </h3>
+    <h3>
+      شماره تماس:
+      {{ mainService.allUsers[mainService.indexOfLoggedInUser].phoneNumber }}
+    </h3>
+    <button (click)="deleteAccount()" mat-raised-button>حذف حساب</button>
+  </div>
+  @if (showIncreaseAccountBalancePage) {
+  <div class="increaseAccountBalance">
+    <button mat-button (click)="showIncreaseAccountBalancePage = false">
+      بستن
+    </button>
+    <mat-form-field>
+      <mat-label>مبلغ</mat-label>
+      <input type="number" matInput #input />
+      <button mat-raised-button (click)="increaseAccountBalance(+input.value)">
+        افزایش
+      </button>
+    </mat-form-field>
+  </div>
+  } }
+</div>
+}
+<button class="msg" mat-fab (click)="changeVisibilityMessageBox()">
+  <mat-icon>chat</mat-icon>
+</button>
+@if (showMessageForm ) {
+<div class="message">
+  <textarea width="100" #message></textarea>
+  <button
+    type="button"
+    mat-flat-button
+    (click)="sendMessageToManager(message.value)"
+  >
+    ارسال
+  </button>
+</div>
+}

@@ -1,0 +1,53 @@
+$firstColor: #f77f00;
+$secondColor: #003049;
+$thirdColor: #fcbf49;
+$fourthColor: #d62828;
+$fifthColor: #eae2b7;
+
+div.header {
+  background-color: $secondColor;
+  padding: 5px 8px;
+  button {
+    padding: 5px 8px;
+    margin: 3px 6px;
+    background-color: $firstColor;
+    border: 2px solid $fifthColor;
+    border-radius: 8px;
+  }
+}
+div.profile {
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+  margin: 110px 0;
+  width: 100%;
+}
+div.increaseAccountBalance {
+  mat-form-field {
+    width: 100%;
+    input {
+      width: 60%;
+    }
+  }
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  width: 30%;
+  margin: 20px auto;
+}
+div.product {
+  width: 50%;
+  border-bottom: 2px solid $fourthColor;
+  width: 100%;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  h3 {
+    padding: 4px 13px;
+  }
+  button {
+    background-color: $firstColor;
+  }
+}

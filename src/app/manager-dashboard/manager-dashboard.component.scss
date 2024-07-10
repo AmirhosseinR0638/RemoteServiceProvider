@@ -1,0 +1,50 @@
+$secondColor: #003049;
+$thirdColor: #fcbf49;
+$fourthColor: #d62828;
+$fifthColor: #eae2b7;
+div.header {
+  background-color: $secondColor;
+  padding: 5px 8px;
+  button {
+    padding: 5px 8px;
+    margin: 3px 6px;
+    background-color: $thirdColor;
+    border: 2px solid $fifthColor;
+    border-radius: 8px;
+  }
+}
+div.container {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
+  div.users,
+  div.products,
+  div.operators,
+  div.messages {
+    width: 100%;
+    display: flex;
+    flex-flow: row wrap;
+    border-bottom: 3px solid $secondColor;
+    div.user,
+    div.product,
+    div.operator,
+    div.message {
+      margin: 4px 6px;
+      padding: 3px;
+      border: 2px solid $thirdColor;
+      height: auto;
+      justify-content: center;
+      align-items: flex-start;
+      display: flex;
+      flex-flow: column wrap;
+      div {
+        margin: 4px 6px;
+      }
+    }
+  }
+  h2 {
+    text-align: center;
+    color: $fourthColor;
+  }
+}

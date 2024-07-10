@@ -1,0 +1,78 @@
+<div class="header">
+  <button mat-flat-button routerLink="/log-in">خروج</button>
+</div>
+<div class="container">
+  <h2>اپراتورها</h2>
+  <div class="operators">
+    @for (op of mainService.allOperators; track $index) {
+    <div class="operator">
+      <div>{{ $index + 1 }}</div>
+      <div>شناسه اپراتور: {{ op.ID }}</div>
+      <div>نام: {{ op.firstName }}</div>
+      <div>نام خانوادگی: {{ op.lastName }}</div>
+      <div>نام کاربری: {{ op.userName }}</div>
+      <div>رمز عبور: {{ op.password }}</div>
+      <div>شهر: {{ op.city }}</div>
+      <div>شماره تلفن: {{ op.phoneNumber }}</div>
+      <div>موجودی حساب: {{ op.accountBalance }}</div>
+    </div>
+    }
+  </div>
+  <h2>کاربران</h2>
+  <div class="users">
+    @for (u of mainService.allUsers; track $index) {
+    <div class="user">
+      <div>{{ $index + 1 }}</div>
+      <div>شناسه اپراتور: {{ u.ID }}</div>
+      <div>نام: {{ u.firstName }}</div>
+      <div>نام خانوادگی: {{ u.lastName }}</div>
+      <div>نام کاربری: {{ u.userName }}</div>
+      <div>رمز عبور: {{ u.password }}</div>
+      <div>شهر: {{ u.currentCity }}</div>
+      <div>شماره تلفن: {{ u.phoneNumber }}</div>
+      <div>موجودی حساب: {{ u.accountBalance }}</div>
+    </div>
+    }
+  </div>
+  <h2>سفارشات</h2>
+  <div class="products">
+    @for (p of mainService.allProducts; track $index) {
+    <div class="product">
+      <div>{{ $index + 1 }}</div>
+      <div>شناسه محصول: {{ p.ID }}</div>
+      <div>
+        عنوان:
+        {{ p.description }}
+      </div>
+      <div>
+        قیمت:
+        {{ p.price }}
+        تومان
+      </div>
+      <div>
+        تاریخ شروع:
+        {{ p.startedDate }}
+      </div>
+      <div>
+        تاریخ اتمام:
+        {{ p.finishedDate }}
+      </div>
+      <div>
+        امکان حذف محصول:
+        {{ p.canCanceled ? "بله" : "خیر" }}
+      </div>
+      @if (p.operatorName != '') {
+      <div>اپراتور دریافت کننده: {{ p.operatorName }}</div>
+      }
+    </div>
+    }
+  </div>
+  <h2>پیام های دریافت شده</h2>
+  <div class="messages">
+    @for (m of messages; track $index) {
+    <div class="mesaage">
+      <p>پیام هارا در کنسول مشاهده کنید!</p>
+    </div>
+    }
+  </div>
+</div>
